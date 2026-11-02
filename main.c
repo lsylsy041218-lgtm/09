@@ -1,33 +1,45 @@
 #include <stdio.h>
-#define SIZE 4
+#define ROWS 3
+#define COLS 3
 
-void square_array(int a[], int size);
-void print_array(int a[], int size);
+void addMatrix(int A[][COLS], int B[][COLS], int C[][COLS]);
+void printMatrix(int A[][COLS]);
 
 int main(void)
 {
-    int list[SIZE] = {1, 2, 3, 4};
+    int A[ROWS][COLS] = {   // 더하기 대상 행렬
+        {2, 3, 0},
+        {8, 9, 1},
+        {7, 0, 5} };
+    int B[ROWS][COLS] = {   // 더하기 대상 행렬
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1} };
+    int C[ROWS][COLS];      // 덧셈 결과 행렬
 
-    print_array(list, SIZE);
-    square_array(list, SIZE);
-    print_array(list, SIZE);
+    addMatrix(A, B, C);
+    printMatrix(C);
 
     return 0;
 }
 
-void square_array(int a[], int size)
+void addMatrix(int A[][COLS], int B[][COLS], int C[][COLS])
 {
-    int i;
+    int i, j;
 
-    for (i = 0; i < size; i++)
-        a[i] = a[i] * a[i];
+    for (i = 0; i < ROWS; i++)
+        for (j = 0; j < COLS; j++)
+            C[i][j] = A[i][j] + B[i][j];
 }
 
-void print_array(int a[], int size)
+void printMatrix(int A[][COLS])
 {
-    int i;
+    int i, j;
 
-    for (i = 0; i < size; i++)
-        printf("%3d", a[i]);
-    printf("\n");
+    for (i = 0; i < ROWS; i++)
+    {
+        for (j = 0; j < COLS; j++)
+            printf("%d ", A[i][j]);
+        printf("\n");
+    }
 }
